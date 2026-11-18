@@ -90,7 +90,7 @@
       const categoryMatch = (!category || item.category === category) && (!selectedCategory || item.category === selectedCategory);
       const languageMatch = !language || item.language === language;
       const videoMatch = !onlyVideo || item.video;
-      const searchMatch = !query || clean(`${item.title} ${item.category} ${categoryLabel(item.category)} ${item.language}`).includes(query);
+      const searchMatch = !query || clean(`${item.title_es || ''} ${item.title} ${item.category} ${categoryLabel(item.category)} ${item.language}`).includes(query);
       return categoryMatch && languageMatch && videoMatch && searchMatch;
     });
     if (els['sort-filter'].value === 'az') list = [...list].sort((a,b) => a.title.localeCompare(b.title,'es'));
@@ -110,7 +110,7 @@
       <article class="guide-card">
         <div class="card-top"><span class="category-tag" title="${esc(categoryLabel(item.category))}">${esc(categoryLabel(item.category))}</span>${item.video ? '<span class="format-tag">▶ VIDEO</span>' : ''}</div>
         <span class="language-label">${esc(item.language)}</span>
-        <h3>${esc(item.title)}</h3>
+        <h3 title="${esc(item.title_es ? `Título original: ${item.title}` : item.title)}">${esc(item.title_es || item.title)}</h3>
         <a class="card-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer"><span>Abrir guía original</span><span aria-hidden="true">↗</span></a>
       </article>`).join('');
     els['empty-state'].hidden = list.length > 0;
