@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#080b12">
   <meta name="description" content="Explorá 382 guías para recrear tecnologías desde cero. Catálogo curado y presentado por La Clave Argentina, con enlaces a sus fuentes originales.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="La Clave DevLab — Ideas para construir desde cero">
   <meta property="og:description" content="Un catálogo práctico de guías para aprender cómo se construye la tecnología.">
   <meta name="twitter:card" content="summary">
-  <title>La Clave DevLab — Catálogo para construir desde cero</title>
+  <title>La Clave DevLab — Catálogo tecnológico en español</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
 </head>
@@ -21,9 +21,9 @@
       <span class="brand-copy"><strong>LA CLAVE <b>DEVLAB</b></strong><small>TECNOLOGÍA PARA ENTENDER</small></span>
     </a>
     <nav class="topnav" aria-label="Navegación principal">
-      <a href="#catalogo">Catálogo</a><a href="#como-funciona">Cómo usarlo</a><a href="#fuentes">Fuentes</a>
+      <a href="#catalogo">Catálogo</a><a href="#como-funciona">Cómo usarla</a><a href="#fuentes">Créditos</a>
     </nav>
-    <a class="source-pill" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener noreferrer">FUENTE ABIERTA <span aria-hidden="true">↗</span></a>
+    <a class="source-pill" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener noreferrer">FUENTE ORIGINAL <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="inicio">
@@ -33,7 +33,7 @@
         <p class="eyebrow"><span class="pulse"></span> BIBLIOTECA ABIERTA · EDICIÓN LA CLAVE ARGENTINA</p>
         <h1 id="hero-title">No te quedes con la caja.<br><em>Entendé cómo se construye.</em></h1>
         <p class="hero-lead">Un mapa de guías prácticas para recrear tecnologías desde cero: desde un pequeño motor de búsqueda hasta un sistema operativo.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#catalogo">Explorar el catálogo <span aria-hidden="true">↓</span></a><a class="text-link" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener noreferrer">Ver repositorio original <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-actions"><a class="button button-primary" href="#catalogo">Explorar catálogo <span aria-hidden="true">↓</span></a><a class="text-link" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener noreferrer">Ver repositorio fuente <span aria-hidden="true">↗</span></a></div>
         <div class="hero-note"><span class="note-icon">i</span> Guías y enlaces de sus autores originales. Esta web organiza el catálogo; no aloja ni reclama la autoría de esos tutoriales.</div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -44,30 +44,30 @@
     </section>
 
     <section class="metrics" aria-label="Datos del catálogo">
-      <div><strong id="total-count">382</strong><span>GUÍAS ENLAZADAS</span></div><div><strong id="category-count">31</strong><span>CATEGORÍAS</span></div><div><strong>CC0</strong><span>ÍNDICE FUENTE</span></div><p>Curado para explorar. Cada guía conserva su enlace y atribución.</p>
+      <div><strong id="total-count">382</strong><span>GUÍAS PARA EXPLORAR</span></div><div><strong id="category-count">31</strong><span>CATEGORÍAS</span></div><div><strong>CC0</strong><span>FUENTE ORIGINAL</span></div><p>Curado para explorar. Cada guía conserva su enlace y atribución.</p>
     </section>
 
     <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
-      <div class="section-heading"><div><p class="eyebrow eyebrow-dark">LA BIBLIOTECA</p><h2 id="catalog-title">Encontrá tu próximo proyecto</h2><p class="section-intro">Buscá por tecnología, lenguaje o tema. Abrí cada ficha para ir a la guía original.</p></div><div class="live-count" aria-live="polite"><span class="live-dot"></span><span id="result-count">Cargando catálogo…</span></div></div>
+      <div class="section-heading"><div><p class="eyebrow eyebrow-dark">EL CATÁLOGO</p><h2 id="catalog-title">Encontrá tu próximo proyecto</h2><p class="section-intro">Buscá por tema o lenguaje. Cada ficha te lleva a la guía original.</p></div><div class="live-count" aria-live="polite"><span class="live-dot"></span><span id="result-count">Cargando catálogo…</span></div></div>
       <div class="filter-panel">
         <label class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Buscar en el catálogo</span><input id="search" type="search" placeholder="Probá “base de datos”, “Python”, “navegador”…" autocomplete="off"><kbd>/</kbd></label>
-        <label class="select-wrap"><span class="sr-only">Filtrar por categoría</span><select id="category-filter"><option value="">Todas las categorías</option></select><span aria-hidden="true">⌄</span></label>
+        <label class="select-wrap"><span class="sr-only">Filtrar por categoría</span><select id="category-filter"><option value="">Todos los temas</option></select><span aria-hidden="true">⌄</span></label>
         <label class="select-wrap language-select"><span class="sr-only">Filtrar por lenguaje</span><select id="language-filter"><option value="">Todos los lenguajes</option></select><span aria-hidden="true">⌄</span></label>
         <label class="video-toggle"><input id="video-filter" type="checkbox"><span class="toggle-ui"></span><span>Solo videos</span></label>
-        <button id="clear-filters" class="clear-button" type="button">Limpiar</button>
+        <button id="clear-filters" class="clear-button" type="button">Borrar filtros</button>
       </div>
       <div class="category-strip" id="category-chips" aria-label="Categorías populares"></div>
       <div class="catalog-layout">
-        <aside class="catalog-aside"><div class="aside-label">EXPLORAR POR TEMA</div><nav id="category-list" class="category-list" aria-label="Todas las categorías"></nav><div class="aside-callout"><span>✳</span><strong>Aprender haciendo</strong><p>Elegí una guía, seguí el paso a paso y entendé las piezas que hay detrás.</p></div></aside>
-        <div class="results-area"><div class="results-toolbar"><span id="active-filter-label">Todas las guías</span><label>Ordenar <select id="sort-filter"><option value="source">Orden original</option><option value="az">Título A–Z</option><option value="language">Lenguaje</option></select></label></div><div id="cards" class="cards-grid" aria-live="polite"></div><div id="empty-state" class="empty-state" hidden><span>⌕</span><h3>No encontramos coincidencias</h3><p>Probá con otro término o sacá algún filtro.</p><button id="empty-clear" type="button" class="button button-secondary">Ver todo el catálogo</button></div><div class="load-more-wrap"><button id="load-more" class="button button-secondary" type="button" hidden>Mostrar más guías <span aria-hidden="true">↓</span></button></div></div>
+        <aside class="catalog-aside"><div class="aside-label">TEMAS</div><nav id="category-list" class="category-list" aria-label="Todos los temas"></nav><div class="aside-callout"><span>✳</span><strong>Aprender haciendo</strong><p>Elegí una guía, seguí el paso a paso y entendé las piezas que hay detrás.</p></div></aside>
+        <div class="results-area"><div class="results-toolbar"><span id="active-filter-label">Todas las guías</span><label>Ordenar <select id="sort-filter"><option value="source">Orden del catálogo</option><option value="az">Título A–Z</option><option value="language">Lenguaje</option></select></label></div><div id="cards" class="cards-grid" aria-live="polite"></div><div id="empty-state" class="empty-state" hidden><span>⌕</span><h3>No encontramos resultados</h3><p>Probá con otras palabras o borrá algún filtro.</p><button id="empty-clear" type="button" class="button button-secondary">Ver todas las guías</button></div><div class="load-more-wrap"><button id="load-more" class="button button-secondary" type="button" hidden>Cargar más guías <span aria-hidden="true">↓</span></button></div></div>
       </div>
       <noscript><div class="noscript">Para filtrar y explorar las fichas hace falta activar JavaScript en el navegador. El código del sitio es público en el repositorio.</div></noscript>
     </section>
 
-    <section class="how-section" id="como-funciona"><div class="how-inner"><div><p class="eyebrow">UNA IDEA, MUCHAS CAPAS</p><h2>Aprendé desarmando<br>y volviendo a construir.</h2><p>Estas guías convierten tecnologías conocidas en proyectos de aprendizaje. No son productos listos para descargar: son recorridos y materiales creados por sus autores para estudiar conceptos y experimentar.</p><a class="button button-outline" href="#catalogo">Elegir una guía <span aria-hidden="true">→</span></a></div><div class="steps"><article><span>01</span><div><h3>Elegí una categoría</h3><p>Buscá un área que te interese: IA, redes, gráficos, sistemas y más.</p></div></article><article><span>02</span><div><h3>Filtrá por lenguaje</h3><p>Encontrá un tutorial acorde a las herramientas que ya conocés o querés aprender.</p></div></article><article><span>03</span><div><h3>Seguí la fuente original</h3><p>La ficha te lleva al tutorial del autor. Revisá requisitos, vigencia y licencia antes de reutilizar código.</p></div></article></div></div></section>
+    <section class="how-section" id="como-funciona"><div class="how-inner"><div><p class="eyebrow">APRENDER HACIENDO</p><h2>Aprendé desarmando<br>y volviendo a construir.</h2><p>Estas guías convierten tecnologías conocidas en proyectos de aprendizaje. No son productos listos para descargar: son recorridos y materiales creados por sus autores para estudiar conceptos y experimentar.</p><a class="button button-outline" href="#catalogo">Elegir una guía <span aria-hidden="true">→</span></a></div><div class="steps"><article><span>01</span><div><h3>Elegí una categoría</h3><p>Buscá un área que te interese: IA, redes, gráficos, sistemas y más.</p></div></article><article><span>02</span><div><h3>Filtrá por lenguaje</h3><p>Encontrá un tutorial acorde a las herramientas que ya conocés o querés aprender.</p></div></article><article><span>03</span><div><h3>Seguí la fuente original</h3><p>La ficha te lleva al tutorial del autor. Revisá requisitos, vigencia y licencia antes de reutilizar código.</p></div></article></div></div></section>
 
-    <section class="credits-section" id="fuentes"><div class="credits-card"><div class="credits-symbol" aria-hidden="true">✳</div><div><p class="eyebrow eyebrow-dark">CRÉDITOS Y TRANSPARENCIA</p><h2>Una biblioteca curada por La Clave Argentina.</h2><p>La Clave Argentina es responsable de esta edición web, su organización y presentación. El catálogo se basa en <strong>Build Your Own X</strong>, iniciado por Daniel Stefanovic y actualmente mantenido por CodeCrafters, Inc., junto a la comunidad de colaboradores. Las guías pertenecen a sus autores y se abren en sus sitios originales; sus términos pueden variar.</p><div class="credit-links"><a href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener noreferrer">Repositorio fuente <span>↗</span></a><a href="https://github.com/codecrafters-io/build-your-own-x/graphs/contributors" target="_blank" rel="noopener noreferrer">Colaboradores originales <span>↗</span></a><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">Licencia CC0 del índice fuente <span>↗</span></a></div></div><div class="credit-stamp"><span>LA CLAVE</span><b>ARGENTINA</b><small>CATÁLOGO · EDICIÓN WEB</small></div></div></section>
+    <section class="credits-section" id="fuentes"><div class="credits-card"><div class="credits-symbol" aria-hidden="true">✳</div><div><p class="eyebrow eyebrow-dark">CRÉDITOS Y FUENTES</p><h2>Una biblioteca curada por La Clave Argentina.</h2><p>La Clave Argentina es responsable de esta edición web, su organización y presentación. El catálogo se basa en <strong>Build Your Own X</strong>, iniciado por Daniel Stefanovic y actualmente mantenido por CodeCrafters, Inc., junto a la comunidad de colaboradores. Las guías pertenecen a sus autores y se abren en sus sitios originales; sus términos pueden variar.</p><div class="credit-links"><a href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener noreferrer">Repositorio fuente <span>↗</span></a><a href="https://github.com/codecrafters-io/build-your-own-x/graphs/contributors" target="_blank" rel="noopener noreferrer">Colaboradores originales <span>↗</span></a><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">Licencia CC0 del índice fuente <span>↗</span></a></div></div><div class="credit-stamp"><span>LA CLAVE</span><b>ARGENTINA</b><small>CATÁLOGO · EDICIÓN WEB</small></div></div></section>
   </main>
-  <footer class="footer"><a class="footer-brand" href="#inicio">LA CLAVE <b>DEVLAB</b></a><span>Ideas para entender la tecnología, desde adentro.</span><a href="https://github.com/florenciaamor36-ship-it/la-clave-devlab-catalogo" target="_blank" rel="noopener noreferrer">PROYECTO WEB ↗</a></footer>
+  <footer class="footer"><a class="footer-brand" href="#inicio">LA CLAVE <b>DEVLAB</b></a><span>Ideas para entender la tecnología, desde adentro.</span><a href="https://github.com/florenciaamor36-ship-it/la-clave-devlab-catalogo" target="_blank" rel="noopener noreferrer">CÓDIGO DEL SITIO ↗</a></footer>
 </body>
 </html>
