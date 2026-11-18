@@ -4,6 +4,10 @@
   let catalog = [], visibleCount = PAGE_SIZE, selectedCategory = '';
   const clean = value => value.toLocaleLowerCase('es');
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const categoryNames = {'3D Renderer':'Renderizado 3D','AI Model':'Modelos de IA','Augmented Reality':'Realidad aumentada','BitTorrent Client':'Cliente BitTorrent','Blockchain / Cryptocurrency':'Blockchain y criptomonedas','Bot':'Bots','Command-Line Tool':'Herramientas de terminal','Database':'Bases de datos','Distributed Systems':'Sistemas distribuidos','Docker':'Docker y contenedores','Emulator / Virtual Machine':'Emuladores y máquinas virtuales','Front-end Framework / Library':'Frameworks y bibliotecas web','Game':'Videojuegos','Git':'Git y control de versiones','Memory Allocator':'Gestión de memoria','Network Stack':'Redes y protocolos','Neural Network':'Redes neuronales','Operating System':'Sistemas operativos','Physics Engine':'Motores de física','Processor':'Procesadores','Programming Language':'Lenguajes de programación','Regex Engine':'Motores de expresiones regulares','Search Engine':'Motores de búsqueda','Shell':'Intérpretes de comandos','Template Engine':'Motores de plantillas','Text Editor':'Editores de texto','Visual Recognition System':'Reconocimiento visual','Voxel Engine':'Motores voxel','Web Browser':'Navegadores web','Web Server':'Servidores web','Uncategorized':'Otros proyectos'};
+  const categoryLabel = name => categoryNames[name] || name;
+  const categoryNames = {'3D Renderer':'Renderizado 3D','AI Model':'Modelos de IA','Augmented Reality':'Realidad aumentada','BitTorrent Client':'Cliente BitTorrent','Blockchain / Cryptocurrency':'Blockchain y criptomonedas','Bot':'Bots','Command-Line Tool':'Herramientas de terminal','Database':'Bases de datos','Distributed Systems':'Sistemas distribuidos','Docker':'Docker y contenedores','Emulator / Virtual Machine':'Emuladores y máquinas virtuales','Front-end Framework / Library':'Frameworks y bibliotecas web','Game':'Videojuegos','Git':'Git y control de versiones','Memory Allocator':'Gestión de memoria','Network Stack':'Redes y protocolos','Neural Network':'Redes neuronales','Operating System':'Sistemas operativos','Physics Engine':'Motores de física','Processor':'Procesadores','Programming Language':'Lenguajes de programación','Regex Engine':'Motores de expresiones regulares','Search Engine':'Motores de búsqueda','Shell':'Intérpretes de comandos','Template Engine':'Motores de plantillas','Text Editor':'Editores de texto','Visual Recognition System':'Reconocimiento visual','Voxel Engine':'Motores voxel','Web Browser':'Navegadores web','Web Server':'Servidores web','Uncategorized':'Otros proyectos'};
+  const categoryLabel = name => categoryNames[name] || name;
   const categoryIcon = name => ({'AI Model':'✳','Neural Network':'◉','Database':'▤','Web Browser':'⌘','Web Server':'↗','Git':'⑂','Docker':'▣','Game':'◇','Blockchain / Cryptocurrency':'◈','Search Engine':'⌕'}[name] || '◌');
 
   function setupFilters() {
@@ -13,17 +17,17 @@
     els['category-count'].textContent = categories.length;
     const counts = catalog.reduce((acc,item) => (acc[item.category]=(acc[item.category]||0)+1,acc),{});
     categories.forEach(category => {
-      const option = document.createElement('option'); option.value = category; option.textContent = category; els['category-filter'].append(option);
-      const button = document.createElement('button'); button.type='button'; button.className='category-item'; button.dataset.category=category; button.innerHTML=`<span>${esc(categoryIcon(category))} &nbsp;${esc(category)}</span><small>${counts[category]}</small>`; button.addEventListener('click',()=>chooseCategory(category)); els['category-list'].append(button);
+      const option = document.createElement('option'); option.value = category; option.textContent = categoryLabel(category); els['category-filter'].append(option);
+      const button = document.createElement('button'); button.type='button'; button.className='category-item'; button.dataset.category=category; button.innerHTML=`<span>${esc(categoryIcon(category))} &nbsp;${esc(categoryLabel(category))}</span><small>${counts[category]}</small>`; button.addEventListener('click',()=>chooseCategory(category)); els['category-list'].append(button);
     });
     languages.forEach(language => { const option=document.createElement('option'); option.value=language; option.textContent=language; els['language-filter'].append(option); });
     const popular = ['AI Model','Database','Git','Neural Network','Web Browser','Game','Docker','Search Engine'];
-    popular.filter(c=>categories.includes(c)).forEach(category=>{const button=document.createElement('button');button.type='button';button.className='category-chip';button.textContent=category;button.dataset.category=category;button.addEventListener('click',()=>chooseCategory(selectedCategory===category?'':category));els['category-chips'].append(button);});
+    popular.filter(c=>categories.includes(c)).forEach(category=>{const button=document.createElement('button');button.type='button';button.className='category-chip';button.textContent=categoryLabel(category);button.dataset.category=category;button.addEventListener('click',()=>chooseCategory(selectedCategory===category?'':category));els['category-chips'].append(button);});
   }
   function chooseCategory(category){selectedCategory=category;els['category-filter'].value=category;visibleCount=PAGE_SIZE;update();}
   function matching(){
     const query=clean(els.search.value.trim()), category=els['category-filter'].value, language=els['language-filter'].value, onlyVideo=els['video-filter'].checked;
-    let list=catalog.filter(item=> (!category||item.category===category)&&(!selectedCategory||item.category===selectedCategory)&&(!language||item.language===language)&&(!onlyVideo||item.video)&&(!query||clean(`${item.title} ${item.category} ${item.language}`).includes(query)));
+    let list=catalog.filter(item=> (!category||item.category===category)&&(!selectedCategory||item.category===selectedCategory)&&(!language||item.language===language)&&(!onlyVideo||item.video)&&(!query||clean(`${item.title} ${item.category} ${categoryLabel(item.category)} ${item.language}`).includes(query)));
     const sort=els['sort-filter'].value;
     if(sort==='az') list=[...list].sort((a,b)=>a.title.localeCompare(b.title,'es'));
     if(sort==='language') list=[...list].sort((a,b)=>a.language.localeCompare(b.language,'es')||a.title.localeCompare(b.title,'es'));
@@ -32,8 +36,8 @@
   function update(){
     const list=matching(), shown=list.slice(0,visibleCount); const active=els['category-filter'].value||selectedCategory;
     els['result-count'].textContent=`${list.length.toLocaleString('es-AR')} ${list.length===1?'guía':'guías'}`;
-    els['active-filter-label'].textContent=active?`${active} · ${list.length} ${list.length===1?'guía':'guías'}`:'Todas las guías';
-    els.cards.innerHTML=shown.map(item=>`<article class="guide-card"><div class="card-top"><span class="category-tag" title="${esc(item.category)}">${esc(item.category)}</span>${item.video?'<span class="format-tag">▶ VIDEO</span>':''}</div><span class="language-label">${esc(item.language)}</span><h3>${esc(item.title)}</h3><a class="card-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer"><span>Ir a la guía original</span><span aria-hidden="true">↗</span></a></article>`).join('');
+    els['active-filter-label'].textContent=active?`${categoryLabel(active)} · ${list.length} ${list.length===1?'guía':'guías'}`:'Todas las guías';
+    els.cards.innerHTML=shown.map(item=>`<article class="guide-card"><div class="card-top"><span class="category-tag" title="${esc(categoryLabel(item.category))}">${esc(categoryLabel(item.category))}</span>${item.video?'<span class="format-tag">▶ VIDEO</span>':''}</div><span class="language-label">${esc(item.language)}</span><h3>${esc(item.title)}</h3><a class="card-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer"><span>Abrir guía original</span><span aria-hidden="true">↗</span></a></article>`).join('');
     els['empty-state'].hidden=list.length>0; els['load-more'].hidden=shown.length>=list.length;
     document.querySelectorAll('.category-item,.category-chip').forEach(button=>button.classList.toggle('active',button.dataset.category===active));
   }
